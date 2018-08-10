@@ -40,7 +40,7 @@
     when: ansible_os_family == "RedHat"
   - name: download the web page
     get_url:
-      url:https://raw.githubusercontent.com/sandeepmchary/Ansible1/master/lamp%20for%20both%20OS/Info.php
+      url: https://raw.githubusercontent.com/sandeepmchary/Ansible1/master/lamp%20for%20both%20OS/Info.php
       dest: /var/www/html/info.php
   handlers:
     - name: restart apache
@@ -55,7 +55,7 @@
         enabled: yes
         state: restarted
     when: ansible_os_family == " RedHat"
-    
+
 
       
 
