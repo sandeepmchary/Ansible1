@@ -10,6 +10,8 @@
       update_cache: yes
     when: ansible_os_family == "Debain"
     # Need to Restart the service for UBUNTU #
+    notify:
+    - restart apache
     # Installing for RedHat #
   - name: Install httpd
     yum:
@@ -18,6 +20,8 @@
       enabled: yes
     when: ansible_os_family == "RedHat"
     # Need to Restart the service for REDHAT #
+    notify:
+    - restart httpd
     # Installing the php packages for Ubuntu #
   - name: Install php packags
     apt:
@@ -42,6 +46,9 @@
     get_url:
       url: https://raw.githubusercontent.com/sandeepmchary/Ansible1/master/lamp%20for%20both%20OS/Info.php
       dest: /var/www/html/info.php
+    notify:
+    - restart apache
+    - restart httpd
   handlers:
     - name: restart apache
       service:
