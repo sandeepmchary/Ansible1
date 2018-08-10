@@ -2,67 +2,55 @@
 - hosts: all
   become: yes
   tasks:
-    # Installing for Ubuntu #
-  - name: Install apache and update
+  - name: update package and install apache2 Ubuntu
     apt:
       name: apache2
-      state: present
       update_cache: yes
-    when: ansible_os_family == "Debian"
-    # Need to Restart the service for UBUNTU #
-    notify:
-    - restart apache
-    # Installing for RedHat #
-  - name: Install httpd
-    yum:
-      name: httpd
       state: present
-      enabled: yes
-    when: ansible_os_family == "RedHat"
-    # Need to Restart the service for REDHAT #
     notify:
-    - restart httpd
-    # Installing the php packages for Ubuntu #
-  - name: Install php packags
+    - Restart apache2
+    when: ansible_os_family =="Debian"
+  - name: Install php Packages
     apt:
-      name: "{{ item }}"
-      state: present
+       name: "{{ item }}"
+       state: present
     with_items:
       - php
       - libapache2-mod-php
       - php-mcrypt
       - php-mysql
     when: ansible_os_family == "Debian"
-      # Installing the PHP packages for Redhat #
-  - name: Install php packages for RedHat
+  - name: Update the packages and install apache in redhat
     yum:
-      name:
+      name: httpd
+      state: present
+    notify:
+    - Restart Httpd
+    when: ansible_os_family == "RedHat"
+  - name: Install PHP in REDHAT
+    yum:
+      name: "{{ item }}"
       state: present
     with_items:
       - php
       - php-mysql
-    when: ansible_os_family == "RedHat"
-  - name: download the web page
-    get_url:
-      url: https://raw.githubusercontent.com/sandeepmchary/Ansible1/master/lamp%20for%20both%20OS/Info.php
-      dest: /var/www/html/info.php
-    notify:
-    - restart apache
-    - restart httpd
-  handlers:
-    - name: restart apache
-      service:
-        name: apache2
-        enabled: yes
-        state: restarted
     when: ansible_os_family == "Debian"
-    - name: restart httpd
-      service:
-        name: httpd
-        enabled: yes
-        state: restarted
-    when: ansible_os_family == "RedHat"
-
-
-      
-
+  - name: download the webpage
+    get_url:
+    url: https://raw.githubusercontent.com/sandeepmchary/Ansible1/master/lamp%20for%20both%20OS/Info.php
+    dest: /var/www/html/info.php
+    notify:
+    - Restart apache2
+    - Restart Httpd
+  handlers:
+  - name: Restart apache2
+    service:
+      name: apache2
+      state: restarted
+      enabled: yes
+  when: ansible_os_family == "Debian"
+  - name: Restart Httpd
+    service:
+      name: httpd
+      state: restarted
+  
