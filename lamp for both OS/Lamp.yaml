@@ -1,0 +1,45 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    # Installing for Ubuntu #
+  - name: Install apache and update
+    apt:
+      name: apache2
+      state: present
+      update_cache: yes
+    when: ansible_os_family == "Debain"
+    # Need to Restart the service for UBUNTU #
+    # Installing for RedHat #
+  - name: Install httpd
+    yum:
+      name: httpd
+      state: present
+      enabled: yes
+    when: ansible_os_family == "RedHat"
+    # Need to Restart the service for REDHAT #
+    # Installing the php packages for Ubuntu #
+  - name: Install php packags
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - php
+      - libapache2-mod-php
+      - php-mcrypt
+      - php-mysql
+    when: ansible_os_family == "Debain"
+      # Installing the PHP packages for Redhat #
+  - name: Install php packages for RedHat
+    yum:
+      name:
+      state: present
+    with_items:
+      - php
+      - php-mysql
+    when: ansible_os_family == "RedHat"
+  - name: download the web page
+    get_url:
+      url:
+      
+
