@@ -8,7 +8,7 @@
       name: apache2
       state: present
       update_cache: yes
-    when: ansible_os_family == "Debain"
+    when: ansible_os_family == "Debian"
     # Need to Restart the service for UBUNTU #
     notify:
     - restart apache
@@ -32,7 +32,7 @@
       - libapache2-mod-php
       - php-mcrypt
       - php-mysql
-    when: ansible_os_family == "Debain"
+    when: ansible_os_family == "Debian"
       # Installing the PHP packages for Redhat #
   - name: Install php packages for RedHat
     yum:
