@@ -34,11 +34,11 @@
     with_items:
       - php
       - php-mysql
-    when: ansible_os_family == "Debian"
+    when: ansible_os_family == "RedHat"
   - name: download the webpage
     get_url:
-    url: https://raw.githubusercontent.com/sandeepmchary/Ansible1/master/lamp%20for%20both%20OS/Info.php
-    dest: /var/www/html/info.php
+      url: https://raw.githubusercontent.com/sandeepmchary/Ansible1/master/lamp%20for%20both%20OS/Info.php
+      dest: /var/www/html/info.php
     notify:
     - Restart apache2
     - Restart Httpd
