@@ -24,5 +24,5 @@
   handlers:
   - name: restart apache
     service:
-      name: "{{ pack_name }}  "
+      name: "{{ pack_name }}"
       state: restarted
