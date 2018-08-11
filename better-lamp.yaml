@@ -20,7 +20,7 @@
       url: https://raw.githubusercontent.com/sandeepmchary/Ansible1/master/lamp%20for%20both%20OS/Info.php
       dest: /var/www/html/info.php
     notify:
-    - Restart apache
+    - restart apache
   handlers:
   - name: restart apache
     service:
