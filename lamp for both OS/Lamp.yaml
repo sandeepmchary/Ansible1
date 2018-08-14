@@ -1,0 +1,56 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: update package and install apache2 Ubuntu
+    apt:
+      name: apache2
+      update_cache: yes
+      state: present
+    notify:
+    - Restart apache2
+    when: ansible_os_family =="Debian"
+  - name: Install php Packages
+    apt:
+       name: "{{ item }}"
+       state: present
+    with_items:
+      - php
+      - libapache2-mod-php
+      - php-mcrypt
+      - php-mysql
+    when: ansible_os_family == "Debian"
+  - name: Update the packages and install apache in redhat
+    yum:
+      name: httpd
+      state: present
+    notify:
+    - Restart Httpd
+    when: ansible_os_family == "RedHat"
+  - name: Install PHP in REDHAT
+    yum:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - php
+      - php-mysql
+    when: ansible_os_family == "RedHat"
+  - name: download the webpage
+    get_url:
+      url: https://raw.githubusercontent.com/sandeepmchary/Ansible1/master/lamp%20for%20both%20OS/Info.php
+      dest: /var/www/html/info.php
+    notify:
+    - Restart apache2
+    - Restart Httpd
+  handlers:
+  - name: Restart apache2
+    service:
+      name: apache2
+      state: restarted
+      enabled: yes
+    when: ansible_os_family == "Debian"
+  - name: Restart Httpd
+    service:
+      name: httpd
+      state: restarted
+    when: ansible_os_family == "RedHat"

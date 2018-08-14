@@ -1,0 +1,29 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Install apache server
+    package:
+      name: "{{ pack_name }}"
+      state: present
+    notify:
+    - restart apache
+  - name: Install php packages 
+    package:
+      name: "{{ item }}"
+      state: present
+    with_items: "{{ php_packages }}"
+    notify:
+    - restart apache
+  - name: download the webpage
+    get_url:
+      url: https://raw.githubusercontent.com/sandeepmchary/Ansible1/master/lamp%20for%20both%20OS/Info.php
+      dest: /var/www/html/info.php
+    notify:
+    - restart apache
+  handlers:
+  - name: restart apache
+    service:
+      name: "{{ pack_name }}"
+      enabled: yes
+      state: restarted
