@@ -1,0 +1,8 @@
+[ubuntu]
+localhost
+ip-172-31-24-94.us-west-2.compute.internal
+
+[redhat]
+ip-172-31-29-4.us-west-2.compute.internal
+ip-172-31-18-105.us-west-2.compute.internal
+ip-172-31-18-175.us-west-2.compute.internal
