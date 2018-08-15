@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # .bashrc
 
 # Source global definitions
@@ -10,7 +9,7 @@ fi
 # export SYSTEMD_PAGER=
 
 # User specific aliases and functions
-=======
+#=======
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -128,4 +127,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
->>>>>>> 2934158d390a1a132e2f11e72373a1b97f9a27b9

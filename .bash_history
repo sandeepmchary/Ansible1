@@ -196,3 +196,81 @@ ssh-copy-id ansible@ip-172-31-24-101.us-west-2.compute.internal
 ssh-copy-id ansible@ip-172-31-25-204.us-west-2.compute.internal
 >>>>>>> 74423eb67f0cd13ed7cd168af5570f52abbdec3b
 >>>>>>> 2934158d390a1a132e2f11e72373a1b97f9a27b9
+ssh-copy-id ansible@ip-172-31-25-87.us-west-2.compute.internal
+ssh-copy-id ansible@ip-172-31-27-133.us-west-2.compute.internal
+sudo vi /etc/ansible/hosts
+ansible-playbook -m ping all
+ansible -m ping all
+claer
+clear
+pwd
+git init .
+sudo yum install -y git
+git init .
+echo # Ansible >> README.md
+git add .
+git status
+git commit -m " added the ansible file"
+git config --global user.email "awssandeepchary@gmail.com"
+git config --global user.name "sandeepmchary"
+git commit -m " added the ansible file"
+git pull orign master
+git pull origin master
+git remote add origin https://github.com/sandeepmchary/Ansible1.git
+git pull origin master
+git add .
+ls
+ls -a
+cat .gitconfig 
+git status
+git commit -m " checcked the gitconfig "
+git pull origin msster
+git pull origin master
+git push origin msater
+git push origin master
+git pull origin master
+clear
+git pull origin master
+pwd
+git add .
+git status
+touch pen.txt
+git add .
+git commit -m " added the pen folder"
+git commit -m " added the pen folder "
+git pull origin master
+git push origin master
+ls
+mkdir Roles
+cd Roles/
+ls
+mkdir Default
+cd Default/
+ansible-galaxy init default
+ls
+tree default/
+sudo yum install -y tree
+tree default/
+cd ~
+git add .
+git status
+git commit -m " Added Role structure "
+git push origin master
+e
+cat /etc/ansible/hosts
+vi /etc/ansible/hosts
+sh bash
+nano /etc/ansible/hosts
+sudo yum -y insatll nano
+sudo -i
+exit
+sudo -i
+chsh --shell /home/ansible/
+exit
+cat /home/ansible/.bashrc
+vi /home/ansible/.bashrc
+exit
+whereis .bashrc
+cat /home/ansible/.bashrc
+vi /home/ansible/.bashrc
+exit
