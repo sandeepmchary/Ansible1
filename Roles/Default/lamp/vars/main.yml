@@ -1,0 +1,9 @@
+---
+# vars file for default
+pack_name: apache2
+php_packages:
+- php
+- php-mysql
+- php-mcrypt
+- libapache2-mod-php
+info_html_url: https://raw.githubusercontent.com/sandeepmchary/Ansible1/master/lamp%20for%20both%20OS/Info.php
