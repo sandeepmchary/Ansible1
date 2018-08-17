@@ -1,6 +1,20 @@
 ---
 - hosts: all
   become: yes
-  roles:
-    - geerlingguy.java
-    
+  role:
+  - geerlingguy.java
+  - idealista.tomcat-role
+  tasks:
+  - name: Copy war file
+    copy:
+      src: gameoflife
+      dest: /opt/tomcat/webapps/gameoflife.war
+    notify:
+    - restart tomcat  
+  handlers:
+  - name: restart tomcat
+    service:
+      name: tomcat
+      state: restarted
+      enabled: yes
+
