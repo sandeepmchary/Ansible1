@@ -3,4 +3,12 @@
   become: yes
   roles:
     - geerlingguy.java
-    - idealista tomcat-role    
+    - idealista.tomcat-role
+    tasks:
+    - name: copy war file
+      copy:
+      src: gameoflife.war
+      dest: /usr/local/tomat/webapss
+
+
+  
